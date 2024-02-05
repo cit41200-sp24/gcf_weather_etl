@@ -23,7 +23,8 @@ exports.readObservation = (file, context) => {
 
     .on('data', (row) => {
         //Log row data
-        console.log(row);
+        //console.log(row);
+        printDict(row);
         
     })
 
@@ -34,3 +35,10 @@ exports.readObservation = (file, context) => {
 }
 
 
+//Helper Functions
+
+function printDict(row) {
+    for (let key in row) {
+        console.log(`${key} : ${row[key]}`);
+    };
+}
