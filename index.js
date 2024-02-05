@@ -24,11 +24,13 @@ exports.readObservation = (file, context) => {
     .on('data', (row) => {
         //Log row data
         console.log(row);
+        
     })
-    
+
     .on('end', () => {
         //Handle end of csv
         console.log("CSV End!");
     })
 }
+
 

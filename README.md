@@ -37,6 +37,15 @@ gsutil cp 724380-93819_sample.csv gs://sp24_elliott_41200_weather_dev
 
 1. Add a helper function that accepts the dictionary of CSV data and loops through it, logging out each row of data as a separate log entry
 
+//Helper Functions
+
+function printDict(row) {
+    for (let key in row) {
+        console.log(`${key} : ${row[key]}`);
+    };
+}
+
+
 ## v4: Transform the data
 
 1. Add a helper function that converts the dictionary values to numeric
