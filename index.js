@@ -24,6 +24,7 @@ exports.readObservation = (file, context) => {
     .on('data', (row) => {
         //Log row data
         //console.log(row);
+        modifyDict(row, file.name);
         printDict(row);
         
     })
@@ -37,8 +38,28 @@ exports.readObservation = (file, context) => {
 
 //Helper Functions
 
+// Function to modify the row data and add the station code
+function modifyDict(row, fileName) {
+    for (let key in row) {
+        let value = parseFloat(row[key]);
+        if (value === -9999) {
+            row[key] = null;
+        }
+        if (key == "airtemp" || key == "dewpoint" || key == "pressure" || key == "windspeed" || key == "precip1hour" || key == "precip6hour") {
+            if (row[key] != null) {
+                row[key] = value / 10;
+            }
+        }
+
+        const stationCode = fileName.split('_')[0];
+        row['station'] = stationCode;
+    }
+
+}
+
+// Function to print the row data
 function printDict(row) {
     for (let key in row) {
         console.log(`${key} : ${row[key]}`);
-    };
+    }
 }
